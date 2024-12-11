@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Crashlog handling for Tactility OS">
+    <meta name="author" content="ByteWelder / Ken Van Hoeylandt">
+    <title>Oops</title>
+<script defer src="bundle.js"></script></head>
+
+<body>
+
+<header>
+  <nav class="navbar mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand mb-0 h1">Oops...</a>
+    </div>
+  </nav>
+</header>
+
+<main role="main">
+  <section class="py-5 text-center container">
+    <div class="row py-lg-1">
+    <h1 class="fw-light">Oh no! You're probably here because your application crashed!</h1>
+    <div class="lead text-muted">We're very sorry about that. You can send the text below to one of the developers.</div>
+    <div class="container text-center">
+      <div class="row align-items-center">
+        <div class="col" id="AppName">
+        </div>
+        <div class="col" id="Version">
+        </div>
+        <div class="col" id="Architecture">
+        </div>
+      </div>
+    </div>
+    <div id="Stacktrace" class="row py-lg-4" />
+  </section>
+</main>
+
+</body>
+</html>
