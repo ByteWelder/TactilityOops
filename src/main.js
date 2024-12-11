@@ -22,15 +22,19 @@ $(document).ready(function() {
     }
     
     let stacktrace = url.searchParams.get('s');
-    let parts_modulus = stacktrace.length % 16
-    if (parts_modulus == 0) {
-        let part_count = stacktrace.length / 16;
-        for (var i = 0; i < part_count; i++) {
-            let pc = stacktrace.substring(i * 16, i * 16 + 8);
-            let sp = stacktrace.substring(i * 16 + 8, i * 16 + 16);
-            $('#Stacktrace').after(pc + ":" + sp + " ");
+    if (stacktrace != null) {
+        let parts_modulus = stacktrace.length % 16
+        if (parts_modulus == 0) {
+            let part_count = stacktrace.length / 16;
+            for (var i = 0; i < part_count; i++) {
+                let pc = stacktrace.substring(i * 16, i * 16 + 8);
+                let sp = stacktrace.substring(i * 16 + 8, i * 16 + 16);
+                $('#Stacktrace').after(pc + ":" + sp + " ");
+            }
+        } else {
+            console.error("Wrong input");
         }
     } else {
-        console.error("Wrong input");
+        $('#Stacktrace').text("Nothing to see here...");
     }
 });
