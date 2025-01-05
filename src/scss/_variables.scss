@@ -1,0 +1,14 @@
+@import '~bootstrap/scss/_functions.scss';
+
+$theme-colors: (
+  "primary":    #33bbff,
+  "secondary":  #ee81c3,
+  //"success":    $success,
+  //"info":       $info,
+  //"warning":    $warning,
+  //"danger":     $danger,
+  //"light":      $light,
+  "dark":       #21222b
+);
+
+@import '~bootstrap/scss/_variables.scss';

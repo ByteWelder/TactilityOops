@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Crashlog handling for Tactility OS">
+    <meta name="description" content="Crashlog handling for the Tactility operating system">
     <meta name="author" content="ByteWelder / Ken Van Hoeylandt">
     <meta name="robots" content="noindex">
     <title>Oops</title>
@@ -14,32 +14,99 @@
 <header>
   <nav class="navbar mb-4">
     <div class="container-fluid">
-      <a class="navbar-brand mb-0 h1">Oops...</a>
+      <a class="navbar-brand mb-0 h1"><img id="NavbarImage">&nbsp;Oops...</a>
     </div>
   </nav>
 </header>
 
+<div class="modal fade" id="HelpModal" tabindex="-1" aria-labelledby="HelpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="HelpModalLabel">What is this?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          This page displays the crash information that is passed on from the URL.
+        </p>
+        <p>
+          It receives the application version, the chip architecture (e.g. ESP32, ESP32S3, etc.) and the callstack.
+          The application callstack is a small part of the application state right before it crashed. It helps the developers to find out where exactly the crash happens.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="PrivacyModal" tabindex="-1" aria-labelledby="PrivacyModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="PrivacyModalLabel">Privacy</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          When you open this page, your crash information remains on your computer.
+          The developers don't gather the information unless you click the share button and share it with them via email.
+        </p>
+        <p>
+          The email contains:
+          <ul>
+            <li>Tactility software version</li>
+            <li>The ESP32 hardware type (ESP32, ESP32S3, etc.)</li>
+            <li>The callstack from the crash</li>
+          </ul>
+        </p>
+        <p>
+          The callstack information is the state of the application right when it crashed.
+          It only tells the developer what code was being executed. This often shows which app was running,
+          but it won't contain any user data from the application or the operating system.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <main role="main">
-  <section class="py-5 text-center container">
+  <section id="MainHeader" class="py-5 text-center container invisible">
     <div class="row py-lg-1">
-    <h1 class="fw-light">Oh no! You're probably here because an application crashed!</h1>
+    <h1 class="fw-light">Oh no! It seems that Tactility crashed!</h1>
     <div class="lead text-muted py-lg-1">We're very sorry about that. You can send the text below to one of the developers.</div>
     <div id="Report" class="py-lg-4 text-center" />
   </section>
-  
-  <section>
+
+  <section id="MainShare" class="invisible">
     <div class="container text-center">
       <div class="row justify-content-md-center">
         <div>
           <button type="button" class="btn btn-primary" id="Share">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
-              <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
-            </svg>
-            &nbsp;Share with the developer
+            <img id="ShareImage" />&nbsp;Share with the developer
+          </button>
+          <br/><br/>
+          <button type="button" class="btn btn-outline-primary" id="Help" data-bs-toggle="modal" data-bs-target="#HelpModal">
+            What is this?
+          </button>
+          <br/><br/>
+          <button type="button" class="btn btn-outline-primary" id="Privacy" data-bs-toggle="modal" data-bs-target="#PrivacyModal">
+            Privacy
           </button>
         </div>
       </div>
     </div>
+  </section>
+    
+  <section id="MainFallback" class="py-5 text-center container invisible">
+    <div class="row py-lg-1">
+    <h1 class="fw-light">Nothing to see here...</h1>
+    <div class="lead text-muted py-lg-1">(this is a landing page for QR crash reports and you seem to have nothing to report)</div>
   </section>
 </main>
 
