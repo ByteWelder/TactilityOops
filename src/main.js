@@ -5,8 +5,6 @@ window.application = null;
 
 import toolbarLogo from './asset/images/toolbar-logo.svg';
 import shareImage from './asset/images/share.svg';
-import './asset/images/favicon.svg';
-
 NavbarImage.src = toolbarLogo;
 ShareImage.src = shareImage;
 
