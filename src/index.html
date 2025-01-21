@@ -43,6 +43,27 @@
   </div>
 </div>
 
+<div class="modal fade" id="CommandModal" tabindex="-1" aria-labelledby="CommandModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="CommandModalLabel">What is this?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          This is the commandline is intended for developers and advanced users.
+          Make sure you're using the matching Tactility.elf because otherwise you get incorrect data.
+        </p>
+        <div id="Commandline" class="alert alert-secondary" role="alert">Test</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="PrivacyModal" tabindex="-1" aria-labelledby="PrivacyModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -77,26 +98,29 @@
 </div>
 
 <main role="main">
-  <section id="MainHeader" class="py-5 text-center container invisible">
+  <section id="MainHeader" class="text-center container invisible">
     <div class="row py-lg-1">
     <h1 class="fw-light">Oh no! It seems that Tactility crashed!</h1>
-    <div class="lead text-muted py-lg-1">We're very sorry about that. You can send the text below to one of the developers.</div>
-    <div id="Report" class="py-lg-4 text-center" />
+    <div class="lead text-muted p-4">We're very sorry about that. You can send the text below to one of the developers.</div>
   </section>
-
+  
   <section id="MainShare" class="invisible">
     <div class="container text-center">
       <div class="row justify-content-md-center">
         <div>
-          <button type="button" class="btn btn-primary" id="Share">
+          <button type="button" class="btn btn-main btn-primary m-2" id="Share">
             <img id="ShareImage" />&nbsp;Share with the developer
           </button>
-          <br/><br/>
-          <button type="button" class="btn btn-outline-primary" id="Help" data-bs-toggle="modal" data-bs-target="#HelpModal">
+          </br>
+          <button type="button" class="btn btn-main btn-primary m-2" data-bs-toggle="modal" data-bs-target="#CommandModal">
+            <img id="TerminalImage" />&nbsp;Commandline
+          </button>
+          </br>
+          <button type="button" class="btn btn-main btn-outline-secondary m-2" id="Help" data-bs-toggle="modal" data-bs-target="#HelpModal">
             What is this?
           </button>
-          <br/><br/>
-          <button type="button" class="btn btn-outline-primary" id="Privacy" data-bs-toggle="modal" data-bs-target="#PrivacyModal">
+          </br>
+          <button type="button" class="btn btn-main btn-outline-secondary m-2" id="Privacy" data-bs-toggle="modal" data-bs-target="#PrivacyModal">
             Privacy
           </button>
         </div>

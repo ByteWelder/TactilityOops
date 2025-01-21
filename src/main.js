@@ -5,15 +5,18 @@ window.application = null;
 
 import toolbarLogo from './asset/images/toolbar-logo.svg';
 import shareImage from './asset/images/share.svg';
+import terminalImage from './asset/images/terminal.svg';
 import './asset/images/favicon.svg';
 
 NavbarImage.src = toolbarLogo;
 ShareImage.src = shareImage;
+TerminalImage.src = terminalImage;
 
 class Report {
-    constructor(architecture, version, stacktrace) {
+    constructor(architecture, version, board, stacktrace) {
         this.architecture = architecture;
         this.version = version;
+        this.board = board;
         this.stacktrace = stacktrace;
     }
 }
@@ -36,20 +39,23 @@ function decodeStackTrace(encodedStacktrace) {
 function getReportAsText(report) {
     return 'Version: ' + report.version + '\n' +
         'Architecture: ' + report.architecture + '\n' +
+        'Board: ' + report.board + '\n' +
         'Stacktrace: ' + report.stacktrace;
 }
 
-function showReport(architecture, version, stacktrace) {
+function showReport(architecture, version, board, stacktrace) {
     let stacktrace_text = decodeStackTrace(stacktrace);
     let report = new Report(
         architecture,
         version,
+        board,
         stacktrace_text
     )
 
     let report_text = getReportAsText(report);
-    let report_html = report_text.replaceAll('\n', '<br/>');
-    $('#Report').html(report_html);
+    
+    let commandline = "xtensa-" + architecture + "-elf-addr2line -pfiaC -e build/Tactility.elf " + stacktrace_text;
+    $('#Commandline').html(commandline);
     
     let m_part = 'welder.';
     let m_at = '@';
@@ -77,10 +83,11 @@ $(document).ready(function() {
     
     let architecture = url.searchParams.get('a');
     let version = url.searchParams.get('v');
+    let board = url.searchParams.get('b');
     let stacktrace = url.searchParams.get('s');
     
     if (architecture != null && version != null && stacktrace != null) {
-        showReport(architecture, version, stacktrace);
+        showReport(architecture, version, board, stacktrace);
     } else {
         showNoReport();
     }
